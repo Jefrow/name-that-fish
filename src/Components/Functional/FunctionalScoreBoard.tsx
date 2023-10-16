@@ -1,4 +1,4 @@
-import "./styles/score-board.css";
+ import "./styles/score-board.css";
 //  Where the score is presented
 import { GameScoreProps } from "../../types";
 
