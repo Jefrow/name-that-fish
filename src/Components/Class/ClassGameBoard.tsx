@@ -1,37 +1,46 @@
 import { Component } from "react";
 import "./styles/game-board.css";
-import { Images } from "../../assets/Images";
+import { GameInfoProps } from "../../types";
 
-const initialFishes = [
-  {
-    name: "trout",
-    url: Images.trout,
-  },
-  {
-    name: "salmon",
-    url: Images.salmon,
-  },
-  {
-    name: "tuna",
-    url: Images.tuna,
-  },
-  {
-    name: "shark",
-    url: Images.shark,
-  },
-];
+type GuessType = {
+  guess: string;
+}
 
-export class ClassGameBoard extends Component {
+export class ClassGameBoard extends Component<GameInfoProps> {
+  state: GuessType = {
+    guess: ''
+  }
+
   render() {
-    const nextFishToName = initialFishes[0];
+    const { round, onAnswer, initialFishes } = this.props
+    const nextFishToName = initialFishes[round];
     return (
       <div id="game-board">
         <div id="fish-container">
           <img src={nextFishToName.url} alt={nextFishToName.name} />
         </div>
-        <form id="fish-guess-form">
+        <form
+          id="fish-guess-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (this.state.guess.toLowerCase() === nextFishToName.name) {
+              onAnswer(true);
+            } else {
+              onAnswer(false);
+            }
+            this.setState({ guess: '' });
+          }}
+        >
           <label htmlFor="fish-guess">What kind of fish is this?</label>
-          <input type="text" name="fish-guess" />
+          <input
+            type="text"
+            name="fish-guess"
+            value={this.state.guess}
+            onChange={(e) => {
+              e.preventDefault();
+              this.setState({ guess: e.target.value })
+            }}
+          />
           <input type="submit" />
         </form>
       </div>

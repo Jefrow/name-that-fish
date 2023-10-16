@@ -1,10 +1,12 @@
 import { Component } from "react";
+import { GameScoreProps } from "../../types";
 
-const totalCount = 0;
-const correctCount = 0;
-
-export class ClassFinalScore extends Component {
+export class ClassFinalScore extends Component<GameScoreProps> {
   render() {
+
+    const {correctCount, incorrectCount} = this.props
+    const totalCount = correctCount + incorrectCount
+
     return (
       <div id="final-score">
         <h1>Your Final Score Was</h1>
