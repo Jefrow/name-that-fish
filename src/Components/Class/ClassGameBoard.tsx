@@ -6,8 +6,8 @@ type GuessType = {
   guess: string;
 }
 
-export class ClassGameBoard extends Component<GameInfoProps> {
-  state: GuessType = {
+export class ClassGameBoard extends Component<GameInfoProps,GuessType> {
+  state= {
     guess: ''
   }
 

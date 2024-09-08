@@ -1,7 +1,6 @@
 import "./styles/final-score.css";
 import { GameScoreProps } from "../../types";
 
-
 export const FunctionalFinalScore = ({ correctCount, incorrectCount}: GameScoreProps) => {
   const total = correctCount + incorrectCount; 
   return (
